@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 
 export function FormModal() {
   const { stateModal, showModal, closeModal, addPatient } = usePatientState()
-  const { register, handleSubmit, formState: {errors} } = useForm<DraftPatient>()
+  const { register, handleSubmit, formState: {errors}, reset } = useForm<DraftPatient>()
 
   const registerPatient = (data: DraftPatient) => {
     addPatient(data)
-    console.log(data)
     closeModal()
+    reset()
   }
 
   return (

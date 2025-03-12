@@ -1,17 +1,16 @@
+import { useMemo } from "react"
 import { usePatientState } from "../store/store"
 import { PatientsDetails } from "./PatientsDetails"
 
 export function PatientList() {
   const patients = usePatientState(state => state.patients)
+  const isEmpty = useMemo(() => patients.length <= 0, [patients])
 
   return (
     <div>
-      <h2 className="font-black text-3xl text-center">Patient Follow-up</h2>
-      
-      <p className="text-lg mt-5 text-center mb-10">
-        Add and <span className="text-indigo-600 font-bold">Manage</span> Patients
-      </p>
-      {patients.map(patient => (
+      {isEmpty  
+        ? <p>There are no <span className="text-indigo-600 font-bold">Patinets</span></p>
+        : patients.map(patient => (
         <PatientsDetails 
           key={patient.id}
           patient={patient}

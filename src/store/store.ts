@@ -8,6 +8,7 @@ type PatientsState = {
   stateModal: boolean;
   showModal: () => void;
   closeModal: () => void;
+  deletePatient: (id: Patient['id']) => void
 }
 
 const createPatient = (patient: DraftPatient): Patient => {
@@ -31,6 +32,11 @@ export const usePatientState = create<PatientsState>((set) => ({
   closeModal: () => {
     set(() => ({
       stateModal: false
+    }))
+  },
+  deletePatient: (id) =>{
+    set((state) => ({
+      patients: state.patients.filter(patient => patient.id !== id)
     }))
   }
 }))
