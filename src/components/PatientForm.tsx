@@ -1,26 +1,19 @@
-import { useForm } from "react-hook-form"
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { Error } from "./Error"
-import { DraftPatient } from "../types"
+import { DraftPatient } from "../types";
 
-export function PatientForm() {
-  const { register, handleSubmit, formState: {errors} } = useForm<DraftPatient>()
+type PatientFormProps = {
+  register: UseFormRegister<DraftPatient>;
+  errors: FieldErrors<DraftPatient>;
+};
 
-  const registerPatient = (data: DraftPatient) => {
-    console.log(data)
-  }
+export function PatientForm({ register, errors }: PatientFormProps) {
 
   return (
-    <div className="">
-      <h2 className="font-black text-3xl text-center">Patient Follow-up</h2>
-
-      <p className="text-lg mt-5 text-center mb-10">
-        Add and <span className="text-indigo-600 font-bold">Manage</span> Patients
-      </p>
-
+    <div>
       <form 
-        className="bg-white text-black shadow-md rounded-lg py-10 px-5 mb-10"
+        className="text-white"
         noValidate
-        onSubmit={handleSubmit(registerPatient)}
       >
         <div className="mb-5">
           <label htmlFor="name" className="text-sm uppercase font-bold">
@@ -103,12 +96,6 @@ export function PatientForm() {
           ></textarea>
           {errors.symptoms && <Error>{errors.symptoms?.message?.toString()}</Error>}
         </div>
-
-        <input
-          type="submit"
-          className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-          value='Guardar Paciente'
-        />
       </form> 
     </div>
   )
