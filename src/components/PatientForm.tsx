@@ -22,7 +22,7 @@ export function PatientForm({ register, errors, setValue }: PatientFormProps) {
       setValue('date', selectedPatient.date)
       setValue('symptoms', selectedPatient.symptoms)
     }
-  }, [idPatientActive])
+  }, [idPatientActive, patients, setValue])
 
   return (
     <div>

@@ -4,11 +4,15 @@ import { DraftPatient } from "../types";
 import { useForm } from "react-hook-form";
 
 export function FormModal() {
-  const { stateModal, showModal, closeModal, addPatient } = usePatientState()
+  const { stateModal, showModal, closeModal, addPatient, idPatientActive, updatePatient } = usePatientState()
   const { register, handleSubmit, formState: {errors}, reset, setValue } = useForm<DraftPatient>()
 
   const registerPatient = (data: DraftPatient) => {
-    addPatient(data)
+    if(idPatientActive){
+      updatePatient(data)
+    } else {
+      addPatient(data)
+    }
     closeModal()
     reset()
   }

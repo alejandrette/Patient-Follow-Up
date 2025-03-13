@@ -51,8 +51,8 @@ export const usePatientState = create<PatientsState>((set) => ({
     }))
   },
   updatePatient: (data) => {
-    set(() => ({
-      
+    set((state) => ({
+      patients: state.patients.map(patient => patient.id === state.idPatientActive ? {id: state.idPatientActive, ...data} : patient)
     }))
   }
 }))
