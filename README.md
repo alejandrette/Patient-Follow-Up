@@ -67,7 +67,9 @@ La aplicación se ejecutará en `http://localhost:3000` 🚀
 
 `usePatientState`: Hook personalizado para manejar el estado de los pacientes utilizando `zustand` y gestionar las acciones de agregar, actualizar, eliminar, y seleccionar pacientes.
 
+```js
 const { patients, addPatient, updatePatient, deletePatient } = usePatientState();
+```
 
 ## 📚 Gestión de Estado con Zustand
 
