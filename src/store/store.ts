@@ -4,11 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 
 type PatientsState = {
   patients: Patient[];
+  idPatientActive: Patient['id']
   addPatient: (data: DraftPatient) => void;
   stateModal: boolean;
   showModal: () => void;
   closeModal: () => void;
-  deletePatient: (id: Patient['id']) => void
+  deletePatient: (id: Patient['id']) => void;
+  selectId:(id: Patient['id']) => void;
+  updatePatient: (data: DraftPatient) => void;
 }
 
 const createPatient = (patient: DraftPatient): Patient => {
@@ -17,6 +20,7 @@ const createPatient = (patient: DraftPatient): Patient => {
 
 export const usePatientState = create<PatientsState>((set) => ({
   patients: [],
+  idPatientActive: '',
   addPatient: (data) => {
     const newPatient = createPatient(data)
     set((state) => ({
@@ -31,12 +35,24 @@ export const usePatientState = create<PatientsState>((set) => ({
   },
   closeModal: () => {
     set(() => ({
-      stateModal: false
+      stateModal: false,
+      idPatientActive: ''
     }))
   },
   deletePatient: (id) =>{
     set((state) => ({
       patients: state.patients.filter(patient => patient.id !== id)
+    }))
+  },
+  selectId: (id) => {
+    set(() => ({
+      idPatientActive: id,
+      stateModal: true
+    }))
+  },
+  updatePatient: (data) => {
+    set(() => ({
+      
     }))
   }
 }))

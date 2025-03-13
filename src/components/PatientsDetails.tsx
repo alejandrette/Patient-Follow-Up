@@ -6,7 +6,7 @@ type PatientsDetailsProps= {
 }
 
 export function PatientsDetails({ patient }: PatientsDetailsProps) {
-  const { deletePatient } = usePatientState()
+  const { deletePatient, selectId } = usePatientState()
 
   return (
     <div className="bg-white text-black mb-4 rounded-md p-4">
@@ -18,6 +18,7 @@ export function PatientsDetails({ patient }: PatientsDetailsProps) {
       <p><span className="font-bold">Symptoms:</span> {patient.symptoms}</p>
 
       <button onClick={() => deletePatient(patient.id)}>Delete</button>
+      <button onClick={() => selectId(patient.id)}>Update</button>
     </div>
   )
 }

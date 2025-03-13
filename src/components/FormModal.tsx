@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 export function FormModal() {
   const { stateModal, showModal, closeModal, addPatient } = usePatientState()
-  const { register, handleSubmit, formState: {errors}, reset } = useForm<DraftPatient>()
+  const { register, handleSubmit, formState: {errors}, reset, setValue } = useForm<DraftPatient>()
 
   const registerPatient = (data: DraftPatient) => {
     addPatient(data)
@@ -39,7 +39,7 @@ export function FormModal() {
             </div>
 
             <div className="mt-4 space-y-4">
-              <PatientForm register={register} errors={errors} />
+              <PatientForm register={register} errors={errors} setValue={setValue} />
             </div>
 
             <div className="flex justify-end mt-6 border-t pt-4">

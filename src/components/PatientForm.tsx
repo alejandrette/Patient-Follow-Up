@@ -1,13 +1,28 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { Error } from "./Error"
 import { DraftPatient } from "../types";
+import { useEffect } from "react";
+import { usePatientState } from "../store/store";
 
 type PatientFormProps = {
   register: UseFormRegister<DraftPatient>;
   errors: FieldErrors<DraftPatient>;
+  setValue: UseFormSetValue<DraftPatient>;
 };
 
-export function PatientForm({ register, errors }: PatientFormProps) {
+export function PatientForm({ register, errors, setValue }: PatientFormProps) {
+  const { patients, idPatientActive } = usePatientState()
+
+  useEffect(() => {
+    if(idPatientActive){
+      const selectedPatient = patients.filter(patient => patient.id === idPatientActive)[0]
+      setValue('name', selectedPatient.name)
+      setValue('caretaker', selectedPatient.caretaker)
+      setValue('email', selectedPatient.email)
+      setValue('date', selectedPatient.date)
+      setValue('symptoms', selectedPatient.symptoms)
+    }
+  }, [idPatientActive])
 
   return (
     <div>
