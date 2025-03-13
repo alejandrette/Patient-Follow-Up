@@ -2,6 +2,7 @@ import { PatientForm } from "./PatientForm";
 import { usePatientState } from "../store/store";
 import { DraftPatient } from "../types";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export function FormModal() {
   const { stateModal, showModal, closeModal, addPatient, idPatientActive, updatePatient } = usePatientState()
@@ -10,8 +11,10 @@ export function FormModal() {
   const registerPatient = (data: DraftPatient) => {
     if(idPatientActive){
       updatePatient(data)
+      toast.info('Patient updated correctly')
     } else {
       addPatient(data)
+      toast.success('Patient registered correctly')
     }
     closeModal()
     reset()
