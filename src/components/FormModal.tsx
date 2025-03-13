@@ -21,9 +21,9 @@ export function FormModal() {
     <>
       <button
         onClick={showModal}
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="block my-4 text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:bg-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       >
-        Open Modal
+        Add Patient
       </button>
 
       {stateModal && (
@@ -32,7 +32,10 @@ export function FormModal() {
 
             <div className="flex justify-between items-center border-b pb-2">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Add and <span className="text-indigo-600 font-bold">Manage</span> Patients
+              {idPatientActive 
+                ? <><span className="text-indigo-500 font-bold">Update</span> Patient</> 
+                : <>Add and <span className="text-indigo-500 font-bold">Manage</span> Patients</>}
+                
               </h3>
               <button
                 onClick={closeModal}
@@ -49,15 +52,15 @@ export function FormModal() {
             <div className="flex justify-end mt-6 border-t pt-4">
               <button
                 onClick={handleSubmit(registerPatient)}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
               >
-                I accept
+                {idPatientActive ? 'Update Pacient' : 'Add Pacient'}
               </button>
               <button
                 onClick={closeModal}
                 className="ml-3 px-5 py-2.5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white"
               >
-                Decline
+                Cancel
               </button>
             </div>
           </div>

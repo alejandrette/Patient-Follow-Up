@@ -17,8 +17,10 @@ export function PatientsDetails({ patient }: PatientsDetailsProps) {
       <p><span className="font-bold">Date:</span> {new Date(patient.date).toLocaleDateString('es-ES', { year:"numeric", month:"short", day:"numeric"}) }</p>
       <p><span className="font-bold">Symptoms:</span> {patient.symptoms}</p>
 
-      <button onClick={() => deletePatient(patient.id)}>Delete</button>
-      <button onClick={() => selectId(patient.id)}>Update</button>
+      <div className="grid grid-cols-2 gap-10 mt-2">
+        <button className="bg-pink-600 p-3 text-white font-bold rounded-lg" onClick={() => deletePatient(patient.id)}>Delete</button>
+        <button className="bg-indigo-600 p-3 text-white font-bold rounded-lg" onClick={() => selectId(patient.id)}>Update</button>
+      </div>
     </div>
   )
 }
